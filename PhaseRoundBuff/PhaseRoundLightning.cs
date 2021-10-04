@@ -11,8 +11,8 @@ using Mono.Cecil;
 namespace PhaseRoundLightning
 {
     [BepInDependency("com.bepis.r2api")]
-    [R2API.Utils.R2APISubmoduleDependency(nameof(LanguageAPI), nameof(ProjectileAPI))]
-    [BepInPlugin("com.Moffein.PhaseRoundLightning", "Phase Round Lightning", "1.1.1")]
+    [R2API.Utils.R2APISubmoduleDependency(nameof(LanguageAPI), nameof(ProjectileAPI), nameof(PrefabAPI))]
+    [BepInPlugin("com.Moffein.PhaseRoundLightning", "Phase Round Lightning", "1.1.2")]
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
     public class PhaseRoundLightning : BaseUnityPlugin
     {

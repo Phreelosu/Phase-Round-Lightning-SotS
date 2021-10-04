@@ -78,6 +78,7 @@ namespace PhaseRoundLightning
 
             ProjectileOverlapAttack poa = proj.GetComponent<ProjectileOverlapAttack>();
             poa.onServerHit = null;
+            poa.damageCoefficient = 1f;
 
             ProjectileAPI.Add(proj);
             return proj;

@@ -12,7 +12,7 @@ namespace PhaseRoundLightning
 {
     [BepInDependency("com.bepis.r2api")]
     [R2API.Utils.R2APISubmoduleDependency(nameof(LanguageAPI), nameof(ProjectileAPI))]
-    [BepInPlugin("com.Moffein.PhaseRoundLightning", "Phase Round Lightning", "1.1.0")]
+    [BepInPlugin("com.Moffein.PhaseRoundLightning", "Phase Round Lightning", "1.1.1")]
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
     public class PhaseRoundLightning : BaseUnityPlugin
     {
@@ -22,8 +22,8 @@ namespace PhaseRoundLightning
             string desc;
 
             //These are the important values
-            projDamage = base.Config.Bind<float>(new ConfigDefinition("General Settings", "Projectile Damage"), 5.6f, new ConfigDescription("How much damage direct hits with Phase Round deals.")).Value;
-            lightningDamage = base.Config.Bind<float>(new ConfigDefinition("General Settings", "Damage"), 2.8f, new ConfigDescription("How much damage the lightning deals.")).Value;
+            projDamage = base.Config.Bind<float>(new ConfigDefinition("General Settings", "Projectile Damage"), 5.2f, new ConfigDescription("How much damage direct hits with Phase Round deals.")).Value;
+            lightningDamage = base.Config.Bind<float>(new ConfigDefinition("General Settings", "Damage"), 2.6f, new ConfigDescription("How much damage the lightning deals.")).Value;
             procCoefficient = base.Config.Bind<float>(new ConfigDefinition("General Settings", "Lightning Proc Coefficient"), 0.5f, new ConfigDescription("Affects the effectiveness of procs triggered by the lightning.")).Value;
             
             //These are more niche

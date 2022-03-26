@@ -11,8 +11,8 @@ using Mono.Cecil;
 namespace PhaseRoundLightning
 {
     [BepInDependency("com.bepis.r2api")]
-    [R2API.Utils.R2APISubmoduleDependency(nameof(LanguageAPI), nameof(ProjectileAPI), nameof(PrefabAPI))]
-    [BepInPlugin("com.Moffein.PhaseRoundLightning", "Phase Round Lightning", "1.1.2")]
+    [R2API.Utils.R2APISubmoduleDependency(nameof(LanguageAPI), nameof(ContentAddition), nameof(PrefabAPI))]
+    [BepInPlugin("com.Moffein.PhaseRoundLightning", "Phase Round Lightning", "1.1.3")]
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
     public class PhaseRoundLightning : BaseUnityPlugin
     {
@@ -22,8 +22,8 @@ namespace PhaseRoundLightning
             string desc;
 
             //These are the important values
-            projDamage = base.Config.Bind<float>(new ConfigDefinition("General Settings", "Projectile Damage"), 5.2f, new ConfigDescription("How much damage direct hits with Phase Round deals.")).Value;
-            lightningDamage = base.Config.Bind<float>(new ConfigDefinition("General Settings", "Damage"), 2.6f, new ConfigDescription("How much damage the lightning deals.")).Value;
+            projDamage = base.Config.Bind<float>(new ConfigDefinition("General Settings", "Projectile Damage"), 4.8f, new ConfigDescription("How much damage direct hits with Phase Round deals.")).Value;
+            lightningDamage = base.Config.Bind<float>(new ConfigDefinition("General Settings", "Damage"), 2.4f, new ConfigDescription("How much damage the lightning deals.")).Value;
             procCoefficient = base.Config.Bind<float>(new ConfigDefinition("General Settings", "Lightning Proc Coefficient"), 0.5f, new ConfigDescription("Affects the effectiveness of procs triggered by the lightning.")).Value;
             
             //These are more niche
@@ -36,7 +36,7 @@ namespace PhaseRoundLightning
 
             LanguageAPI.Add("COMMANDO_SECONDARY_DESCRIPTION", desc);
 
-            EntityStateConfiguration phaseConfig = Resources.Load<EntityStateConfiguration>("entitystateconfigurations/EntityStates.Commando.CommandoWeapon.FireFMJ");
+            EntityStateConfiguration phaseConfig = LegacyResourcesAPI.Load<EntityStateConfiguration>("entitystateconfigurations/EntityStates.Commando.CommandoWeapon.FireFMJ");
             for (int i = 0; i < phaseConfig.serializedFieldsCollection.serializedFields.Length; i++)
             {
                 //Debug.Log(phaseConfig.serializedFieldsCollection.serializedFields[i].fieldName);
@@ -53,7 +53,7 @@ namespace PhaseRoundLightning
 
         private GameObject BuildProjectilePrefab()
         {
-            GameObject proj = Resources.Load<GameObject>("prefabs/projectiles/fmjramping").InstantiateClone("MoffeinPhaseRoundLightning", true);
+            GameObject proj = LegacyResourcesAPI.Load<GameObject>("prefabs/projectiles/fmjramping").InstantiateClone("MoffeinPhaseRoundLightning", true);
 
             //Add Lightning
             ProjectileProximityBeamController pbc = proj.GetComponent<ProjectileProximityBeamController>();
@@ -80,7 +80,7 @@ namespace PhaseRoundLightning
             poa.onServerHit = null;
             poa.damageCoefficient = 1f;
 
-            ProjectileAPI.Add(proj);
+            ContentAddition.AddProjectile(proj);
             return proj;
         }
     }

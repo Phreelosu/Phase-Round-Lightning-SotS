@@ -12,7 +12,7 @@ namespace PhaseRoundLightning
 {
     [BepInDependency("com.bepis.r2api")]
     [R2API.Utils.R2APISubmoduleDependency(nameof(LanguageAPI), nameof(ContentAddition), nameof(PrefabAPI))]
-    [BepInPlugin("com.Moffein.PhaseRoundLightning", "Phase Round Lightning", "1.1.3")]
+    [BepInPlugin("com.Moffein.PhaseRoundLightning", "Phase Round Lightning", "1.1.4")]
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
     public class PhaseRoundLightning : BaseUnityPlugin
     {
@@ -40,11 +40,11 @@ namespace PhaseRoundLightning
             for (int i = 0; i < phaseConfig.serializedFieldsCollection.serializedFields.Length; i++)
             {
                 //Debug.Log(phaseConfig.serializedFieldsCollection.serializedFields[i].fieldName);
-                if (phaseConfig.serializedFieldsCollection.serializedFields[i].fieldName == "damageCoefficient")
+                /*if (phaseConfig.serializedFieldsCollection.serializedFields[i].fieldName == "damageCoefficient")
                 {
                     phaseConfig.serializedFieldsCollection.serializedFields[i].fieldValue.stringValue = projDamage.ToString();
-                }
-                else if (phaseConfig.serializedFieldsCollection.serializedFields[i].fieldName == "projectilePrefab")
+                } else*/
+                if (phaseConfig.serializedFieldsCollection.serializedFields[i].fieldName == "projectilePrefab")
                 {
                     phaseConfig.serializedFieldsCollection.serializedFields[i].fieldValue.objectValue = BuildProjectilePrefab();
                 }
@@ -68,7 +68,7 @@ namespace PhaseRoundLightning
             pbc.minAngleFilter = 0f;
             pbc.maxAngleFilter = 180f;
             pbc.procCoefficient = procCoefficient;
-            pbc.damageCoefficient = lightningDamage / projDamage;
+            pbc.damageCoefficient = (projDamage / 3f) * (lightningDamage / projDamage);
             pbc.bounces = 0;
             pbc.lightningType = RoR2.Orbs.LightningOrb.LightningType.Ukulele;
 
@@ -78,7 +78,7 @@ namespace PhaseRoundLightning
 
             ProjectileOverlapAttack poa = proj.GetComponent<ProjectileOverlapAttack>();
             poa.onServerHit = null;
-            poa.damageCoefficient = 1f;
+            poa.damageCoefficient = projDamage / 3f;  //supposed to be 1f
 
             ContentAddition.AddProjectile(proj);
             return proj;

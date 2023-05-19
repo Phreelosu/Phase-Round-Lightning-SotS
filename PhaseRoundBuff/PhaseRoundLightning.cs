@@ -51,6 +51,7 @@ namespace PhaseRoundLightning
             }
         }
 
+        //Divide damage by 3f because of the 300% damage from Vanilla Phase Round.
         private GameObject BuildProjectilePrefab()
         {
             GameObject proj = LegacyResourcesAPI.Load<GameObject>("prefabs/projectiles/fmjramping").InstantiateClone("MoffeinPhaseRoundLightning", true);

@@ -39,6 +39,7 @@ namespace PhaseRoundLightning
             EntityStateConfiguration phaseConfig = LegacyResourcesAPI.Load<EntityStateConfiguration>("entitystateconfigurations/EntityStates.Commando.CommandoWeapon.FireFMJ");
             for (int i = 0; i < phaseConfig.serializedFieldsCollection.serializedFields.Length; i++)
             {
+                //Assuming this got commented out because of EU/NA weirdness causing decimals to turn into commas and break the everything.
                 //Debug.Log(phaseConfig.serializedFieldsCollection.serializedFields[i].fieldName);
                 /*if (phaseConfig.serializedFieldsCollection.serializedFields[i].fieldName == "damageCoefficient")
                 {
@@ -79,7 +80,7 @@ namespace PhaseRoundLightning
 
             ProjectileOverlapAttack poa = proj.GetComponent<ProjectileOverlapAttack>();
             poa.onServerHit = null;
-            poa.damageCoefficient = projDamage / 3f;  //supposed to be 1f
+            poa.damageCoefficient = projDamage / 3f;  //supposed to be 1f so it matches the skill damage itself.
 
             ContentAddition.AddProjectile(proj);
             return proj;

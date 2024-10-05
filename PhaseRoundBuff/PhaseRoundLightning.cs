@@ -12,7 +12,7 @@ namespace PhaseRoundLightning
 {
     [BepInDependency("com.bepis.r2api")]
     [R2API.Utils.R2APISubmoduleDependency(nameof(LanguageAPI), nameof(ContentAddition), nameof(PrefabAPI))]
-    [BepInPlugin("com.Moffein.PhaseRoundLightning", "Phase Round Lightning", "1.1.5")]
+    [BepInPlugin("com.Phreel.PhaseRoundLightningRevived", "Phase Round Lightning Revived", "1.1.6")]
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
     public class PhaseRoundLightning : BaseUnityPlugin
     {
